@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relatar um problema · Zela</title>
+  <meta name="description" content="Relate um problema na sua rua em quatro passos e receba um número de protocolo.">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="topo__barra">
+      <a class="marca" href="index.html">
+        <span class="marca__placa">Zela</span>
+        <span class="marca__texto">Cuide da sua rua</span>
+      </a>
+      <div class="prefs" role="group" aria-label="Preferências de leitura">
+        <button type="button" id="pref-texto" class="botao-pref" aria-pressed="false">Texto maior</button>
+        <button type="button" id="pref-contraste" class="botao-pref" aria-pressed="false">Alto contraste</button>
+      </div>
+      <button type="button" id="botao-menu" class="botao-menu" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    </div>
+    <nav class="navegacao" aria-label="Principal">
+      <ul id="menu-principal" class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="relatar.html" aria-current="page">Relatar problema</a></li>
+        <li><a href="acompanhar.html">Acompanhar <span id="contador-meus" class="contador" hidden></span></a></li>
+        <li><a href="bairro.html">Meu bairro</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="aviso-global" class="aviso-global" role="status" aria-live="polite"></div>
+
+  <main id="conteudo" class="pagina pagina--estreita" tabindex="-1">
+    <div id="area-formulario">
+      <h1>Relatar um problema</h1>
+      <p class="lead">Leva cerca de 3 minutos. Você não precisa criar conta nem se identificar.</p>
+
+      <div id="aviso-rascunho" class="faixa-aviso" hidden>
+        <p>Você começou um relato e não terminou. Quer continuar de onde parou?</p>
+        <div class="acoes">
+          <button type="button" class="botao botao--principal" id="continuar-rascunho">Continuar relato</button>
+          <button type="button" class="botao botao--texto" id="descartar-rascunho">Começar do zero</button>
+        </div>
+      </div>
+
+      <ol class="etapas" aria-label="Etapas do relato">
+        <li data-etapa="1" aria-current="step"><span class="etapas__num">1</span> <span class="etapas__nome">O problema</span></li>
+        <li data-etapa="2"><span class="etapas__num">2</span> <span class="etapas__nome">O local</span></li>
+        <li data-etapa="3"><span class="etapas__num">3</span> <span class="etapas__nome">Detalhes</span></li>
+        <li data-etapa="4"><span class="etapas__num">4</span> <span class="etapas__nome">Revisar</span></li>
+      </ol>
+
+      <form id="form-relato" novalidate>
+
+        <!-- ETAPA 1 -->
+        <section class="etapa" data-etapa="1" aria-labelledby="titulo-etapa-1">
+          <h2 id="titulo-etapa-1" tabindex="-1"><span class="etapa__contagem">Etapa 1 de 4.</span> Qual é o problema?</h2>
+          <div class="resumo-erros" hidden></div>
+
+          <fieldset class="grupo" id="grupo-categoria" aria-describedby="erro-categoria">
+            <legend>Escolha o tipo de problema</legend>
+            <p class="erro" id="erro-categoria" hidden></p>
+            <div class="opcoes-categoria" id="opcoes-categoria"></div>
+          </fieldset>
+          <p class="nota">Não achou seu caso? <a href="ajuda.html#quem-resolve">Veja quem resolve outros problemas</a>, como falta de luz em casa ou vazamento de água.</p>
+
+          <fieldset class="grupo" id="grupo-risco" aria-describedby="erro-risco">
+            <legend>Alguém pode se machucar agora?</legend>
+            <p class="dica">Por exemplo: fio caído, árvore prestes a cair ou rua alagada com correnteza.</p>
+            <p class="erro" id="erro-risco" hidden></p>
+            <div class="opcoes-linha">
+              <label class="opcao"><input type="radio" name="risco" value="nao"> Não</label>
+              <label class="opcao"><input type="radio" name="risco" value="sim"> Sim, há risco agora</label>
+            </div>
+          </fieldset>
+
+          <div id="alerta-emergencia" class="alerta-emergencia" hidden tabindex="-1">
+            <h3>Ligue agora, antes de terminar o relato</h3>
+            <p>Situações de risco precisam de atendimento imediato por telefone. A ligação é gratuita.</p>
+            <ul class="lista-telefones">
+              <li><a href="tel:199"><strong>199</strong> Defesa Civil</a> para árvore caindo, deslizamento ou alagamento</li>
+              <li><a href="tel:193"><strong>193</strong> Bombeiros</a> para fio caído, incêndio ou pessoa presa</li>
+              <li><a href="tel:192"><strong>192</strong> SAMU</a> se alguém já se machucou</li>
+            </ul>
+            <p>Depois da ligação, continue o relato para que o conserto definitivo seja registrado.</p>
+          </div>
+
+          <div class="acoes acoes--etapa">
+            <button type="button" class="botao botao--principal" data-avancar>Continuar</button>
+          </div>
+        </section>
+
+        <!-- ETAPA 2 -->
+        <section class="etapa" data-etapa="2" aria-labelledby="titulo-etapa-2" hidden>
+          <h2 id="titulo-etapa-2" tabindex="-1"><span class="etapa__contagem">Etapa 2 de 4.</span> Onde fica?</h2>
+          <div class="resumo-erros" hidden></div>
+
+          <div class="bloco-localizacao">
+            <button type="button" class="botao botao--secundario" id="usar-localizacao">
+              <svg class="icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              Usar minha localização
+            </button>
+            <p class="status-campo" id="status-localizacao" aria-live="polite"></p>
+          </div>
+
+          <div class="campo campo--curto">
+            <label for="cep">CEP <span class="opcional">(opcional)</span></label>
+            <p class="dica" id="dica-cep">Digite o CEP e preenchemos a rua e o bairro.</p>
+            <input type="text" id="cep" name="cep" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" aria-describedby="dica-cep status-cep erro-cep">
+            <p class="status-campo" id="status-cep" aria-live="polite"></p>
+            <p class="erro" id="erro-cep" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="rua">Rua ou avenida</label>
+            <input type="text" id="rua" name="rua" autocomplete="address-line1" required aria-describedby="erro-rua">
+            <p class="erro" id="erro-rua" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="referencia">Número aproximado ou ponto de referência</label>
+            <p class="dica" id="dica-referencia">Exemplo: em frente ao número 120, perto da farmácia.</p>
+            <input type="text" id="referencia" name="referencia" required aria-describedby="dica-referencia erro-referencia">
+            <p class="erro" id="erro-referencia" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" name="bairro" list="lista-bairros" autocomplete="address-level3" required aria-describedby="erro-bairro">
+            <datalist id="lista-bairros"></datalist>
+            <p class="erro" id="erro-bairro" hidden></p>
+          </div>
+
+          <section id="duplicado" class="duplicado" aria-labelledby="titulo-duplicado" hidden>
+            <h3 id="titulo-duplicado" tabindex="-1">Já existe um relato igual perto daqui</h3>
+            <p>Apoiar o relato existente mostra para a prefeitura que mais gente tem o mesmo problema, e você acompanha o mesmo protocolo.</p>
+            <div id="duplicado-relato"></div>
+            <div class="acoes">
+              <button type="button" class="botao botao--principal" id="apoiar-duplicado">Apoiar este relato</button>
+              <button type="button" class="botao botao--texto" id="ignorar-duplicado">Meu caso é outro, continuar</button>
+            </div>
+          </section>
+
+          <div class="acoes acoes--etapa">
+            <button type="button" class="botao botao--texto" data-voltar>Voltar</button>
+            <button type="button" class="botao botao--principal" data-avancar>Continuar</button>
+          </div>
+        </section>
+
+        <!-- ETAPA 3 -->
+        <section class="etapa" data-etapa="3" aria-labelledby="titulo-etapa-3" hidden>
+          <h2 id="titulo-etapa-3" tabindex="-1"><span class="etapa__contagem">Etapa 3 de 4.</span> Conte os detalhes</h2>
+          <div class="resumo-erros" hidden></div>
+
+          <div class="campo">
+            <label for="descricao">O que você está vendo?</label>
+            <p class="dica" id="dica-descricao">Conte há quanto tempo está assim e como isso atrapalha. Mínimo de 10 letras.</p>
+            <textarea id="descricao" name="descricao" rows="5" maxlength="500" required aria-describedby="dica-descricao contador-descricao erro-descricao"></textarea>
+            <p class="contador-texto" id="contador-descricao">0 de 500 caracteres</p>
+            <p class="erro" id="erro-descricao" hidden></p>
+          </div>
+
+          <div class="campo">
+            <label for="foto">Foto do problema <span class="opcional">(opcional)</span></label>
+            <p class="dica" id="dica-foto">Uma foto ajuda a equipe a levar o material certo.</p>
+            <input type="file" id="foto" name="foto" accept="image/*" aria-describedby="dica-foto erro-foto">
+            <p class="erro" id="erro-foto" hidden></p>
+          </div>
+
+          <div id="bloco-foto" class="bloco-foto" hidden>
+            <img id="previa-foto" src="" alt="">
+            <div class="campo">
+              <label for="foto-descricao">Descreva a foto em poucas palavras</label>
+              <p class="dica" id="dica-foto-descricao">Ajuda quem usa leitor de tela a entender a imagem. Exemplo: poste com a lâmpada quebrada.</p>
+              <input type="text" id="foto-descricao" name="fotoDescricao" maxlength="120" aria-describedby="dica-foto-descricao erro-foto-descricao">
+              <p class="erro" id="erro-foto-descricao" hidden></p>
+            </div>
+            <button type="button" class="botao botao--texto" id="remover-foto">Remover foto</button>
+          </div>
+
+          <fieldset class="grupo">
+            <legend>Quer receber avisos sobre o andamento?</legend>
+            <div class="opcoes-coluna">
+              <label class="opcao"><input type="radio" name="aviso" value="nenhum" checked> Não, vou acompanhar pelo número do protocolo</label>
+              <label class="opcao"><input type="radio" name="aviso" value="email"> Sim, por e-mail</label>
+              <label class="opcao"><input type="radio" name="aviso" value="whatsapp"> Sim, por WhatsApp</label>
+            </div>
+          </fieldset>
+
+          <div class="campo" id="campo-contato" hidden>
+            <label for="contato" id="rotulo-contato">Seu e-mail</label>
+            <input type="email" id="contato" name="contato" autocomplete="email" aria-describedby="erro-contato">
+            <p class="erro" id="erro-contato" hidden></p>
+          </div>
+
+          <div class="acoes acoes--etapa">
+            <button type="button" class="botao botao--texto" data-voltar>Voltar</button>
+            <button type="button" class="botao botao--principal" data-avancar>Revisar relato</button>
+          </div>
+        </section>
+
+        <!-- ETAPA 4 -->
+        <section class="etapa" data-etapa="4" aria-labelledby="titulo-etapa-4" hidden>
+          <h2 id="titulo-etapa-4" tabindex="-1"><span class="etapa__contagem">Etapa 4 de 4.</span> Confira antes de enviar</h2>
+          <dl class="revisao" id="revisao"></dl>
+          <p class="nota">Ao enviar, você recebe um número de protocolo. Com ele você acompanha cada etapa do conserto.</p>
+          <div class="acoes acoes--etapa">
+            <button type="button" class="botao botao--texto" data-voltar>Voltar</button>
+            <button type="submit" class="botao botao--principal">Enviar relato</button>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <!-- CONFIRMAÇÃO -->
+    <section id="confirmacao" class="confirmacao" aria-labelledby="titulo-confirmacao" hidden>
+      <h1 id="titulo-confirmacao" tabindex="-1">Relato enviado</h1>
+      <p class="lead" id="texto-confirmacao"></p>
+
+      <div class="placa placa--protocolo" id="placa-protocolo">
+        <span class="placa__rotulo">Protocolo</span>
+        <strong class="placa__nome" id="numero-protocolo"></strong>
+        <span class="placa__rodape" id="endereco-protocolo"></span>
+      </div>
+
+      <div class="acoes">
+        <button type="button" class="botao botao--secundario" id="copiar-protocolo">
+          <svg class="icone" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>
+          Copiar número do protocolo
+        </button>
+      </div>
+
+      <p id="prazo-confirmacao"></p>
+
+      <h2>O que acontece agora</h2>
+      <ol class="passos passos--compacto">
+        <li><strong>A prefeitura encaminha</strong> seu relato para a equipe responsável.</li>
+        <li><strong>A equipe vistoria o local</strong> e marca a data do serviço.</li>
+        <li><strong>Você confirma</strong> se o problema foi mesmo resolvido. Se não foi, o relato é reaberto.</li>
+      </ol>
+
+      <div class="acoes">
+        <a class="botao botao--principal" id="link-acompanhar" href="acompanhar.html">Acompanhar este relato</a>
+        <a class="botao botao--texto" href="relatar.html">Relatar outro problema</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__conteudo">
+      <section aria-labelledby="rodape-emergencia">
+        <h2 id="rodape-emergencia">Em caso de risco, ligue</h2>
+        <ul class="lista-telefones lista-telefones--rodape">
+          <li><a href="tel:199"><strong>199</strong> Defesa Civil</a></li>
+          <li><a href="tel:193"><strong>193</strong> Bombeiros</a></li>
+          <li><a href="tel:192"><strong>192</strong> SAMU</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="rodape-sobre">
+        <h2 id="rodape-sobre">Sobre o Zela</h2>
+        <p>Protótipo acadêmico da Global Solution FIAP, ligado ao ODS 11: cidades e comunidades sustentáveis. Os relatos são simulados e nada é enviado à prefeitura.</p>
+      </section>
+    </div>
+    <p class="rodape__assinatura">© <span id="ano-atual">2026</span> Equipe Zela</p>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/relatar.js"></script>
+</body>
+</html>

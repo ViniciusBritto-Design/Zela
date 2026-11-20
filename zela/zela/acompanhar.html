@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acompanhar um relato · Zela</title>
+  <meta name="description" content="Veja em que etapa está o conserto do problema que você relatou.">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="topo__barra">
+      <a class="marca" href="index.html">
+        <span class="marca__placa">Zela</span>
+        <span class="marca__texto">Cuide da sua rua</span>
+      </a>
+      <div class="prefs" role="group" aria-label="Preferências de leitura">
+        <button type="button" id="pref-texto" class="botao-pref" aria-pressed="false">Texto maior</button>
+        <button type="button" id="pref-contraste" class="botao-pref" aria-pressed="false">Alto contraste</button>
+      </div>
+      <button type="button" id="botao-menu" class="botao-menu" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+    </div>
+    <nav class="navegacao" aria-label="Principal">
+      <ul id="menu-principal" class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="relatar.html">Relatar problema</a></li>
+        <li><a href="acompanhar.html" aria-current="page">Acompanhar <span id="contador-meus" class="contador" hidden></span></a></li>
+        <li><a href="bairro.html">Meu bairro</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="aviso-global" class="aviso-global" role="status" aria-live="polite"></div>
+
+  <main id="conteudo" class="pagina pagina--estreita" tabindex="-1">
+    <h1>Acompanhar um relato</h1>
+    <p class="lead">Digite o número do protocolo para ver em que etapa está o conserto.</p>
+
+    <form id="form-busca" class="busca" novalidate role="search" aria-label="Buscar protocolo">
+      <div class="campo">
+        <label for="protocolo">Número do protocolo</label>
+        <p class="dica" id="dica-protocolo">Aparece na tela de confirmação do relato. Exemplo: ZL-2026-004812.</p>
+        <div class="busca__linha">
+          <input type="text" id="protocolo" name="protocolo" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="dica-protocolo erro-protocolo">
+          <button type="submit" class="botao botao--principal">Buscar</button>
+        </div>
+        <p class="erro" id="erro-protocolo" hidden></p>
+      </div>
+      <p class="nota">Para testar o protótipo, use <button type="button" class="link-botao" data-exemplo="ZL-2026-004812">ZL-2026-004812</button> (serviço programado) ou <button type="button" class="link-botao" data-exemplo="ZL-2026-004120">ZL-2026-004120</button> (reaberto).</p>
+    </form>
+
+    <section id="resultado" class="resultado" aria-label="Resultado da busca" hidden></section>
+
+    <section class="meus" aria-labelledby="titulo-meus">
+      <h2 id="titulo-meus">Relatos que você acompanha</h2>
+      <p class="dica">Ficam guardados só neste aparelho: os que você relatou e os que você apoiou.</p>
+      <div id="lista-meus"></div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__conteudo">
+      <section aria-labelledby="rodape-emergencia">
+        <h2 id="rodape-emergencia">Em caso de risco, ligue</h2>
+        <ul class="lista-telefones lista-telefones--rodape">
+          <li><a href="tel:199"><strong>199</strong> Defesa Civil</a></li>
+          <li><a href="tel:193"><strong>193</strong> Bombeiros</a></li>
+          <li><a href="tel:192"><strong>192</strong> SAMU</a></li>
+        </ul>
+      </section>
+      <section aria-labelledby="rodape-sobre">
+        <h2 id="rodape-sobre">Sobre o Zela</h2>
+        <p>Protótipo acadêmico da Global Solution FIAP, ligado ao ODS 11: cidades e comunidades sustentáveis. Os relatos são simulados e nada é enviado à prefeitura.</p>
+      </section>
+    </div>
+    <p class="rodape__assinatura">© <span id="ano-atual">2026</span> Equipe Zela</p>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/acompanhar.js"></script>
+</body>
+</html>
