@@ -11,9 +11,7 @@ O Zela ajuda o morador de uma grande cidade a **relatar problemas de zeladoria u
 
 | Nome completo | RM |
 |---|---|
-| Vinícius Soares da Silva Britto | RM00000 |
-
-*(em ordem alfabética)*
+| Vinícius Soares da Silva Britto | RM556994 |
 
 ## O problema
 
