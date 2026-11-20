@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zela · Cuide da sua rua</title>
+  <meta name="description" content="Relate poste apagado, buraco, calçada quebrada ou lixo na rua e acompanhe o conserto pelo número do protocolo.">
+  <meta name="theme-color" content="#0b3d91">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Overpass:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__linha">
+      <a class="marca" href="index.html" aria-label="Zela, página inicial">
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <span class="marca__texto" aria-hidden="true">Cuide da sua rua</span>
+      </a>
+      <nav class="navegacao" aria-label="Principal">
+        <ul id="menu-principal" class="menu">
+          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li><a href="acompanhar.html">Acompanhar <span id="contador-meus" class="contador" hidden></span></a></li>
+          <li><a href="bairro.html">Meu bairro</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li class="menu__cta"><a href="relatar.html"><span data-icone="mais"></span>Relatar problema</a></li>
+        </ul>
+      </nav>
+      <div class="prefs" role="group" aria-label="Preferências de leitura">
+        <button type="button" id="pref-texto" class="botao-icone" aria-pressed="false" aria-label="Texto maior" data-dica="Texto maior"><span data-icone="texto"></span></button>
+        <button type="button" id="pref-contraste" class="botao-icone" aria-pressed="false" aria-label="Alto contraste" data-dica="Alto contraste"><span data-icone="contraste"></span></button>
+      </div>
+      <button type="button" id="botao-menu" class="botao-icone botao-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span data-icone="menu"></span></button>
+    </div>
+  </header>
+
+  <div id="aviso-global" class="aviso-global" role="status" aria-live="polite"></div>
+
+  <main id="conteudo" tabindex="-1">
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="container hero__grade">
+        <div class="hero__texto">
+          <h1 id="titulo-hero">Viu um problema na rua? Avise e acompanhe até o conserto.</h1>
+          <p class="lead">Poste apagado, buraco, calçada quebrada, lixo acumulado. Você relata em quatro passos, recebe um número de protocolo e vê cada etapa do serviço.</p>
+          <div class="acoes">
+            <a class="botao botao--principal botao--grande" href="relatar.html"><span data-icone="mais"></span>Relatar um problema</a>
+            <a class="botao botao--secundario botao--grande" href="acompanhar.html">Acompanhar protocolo</a>
+          </div>
+          <ul class="garantias">
+            <li><span data-icone="check"></span>Sem cadastro</li>
+            <li><span data-icone="check"></span>Cerca de 3 minutos</li>
+            <li><span data-icone="check"></span>Prazo visível do início ao fim</li>
+          </ul>
+        </div>
+
+        <section class="painel" aria-labelledby="titulo-atualizacoes">
+          <div class="painel__cabeca">
+            <h2 id="titulo-atualizacoes">Últimas atualizações</h2>
+            <a href="bairro.html">Ver todas</a>
+          </div>
+          <ul class="atualizacoes" id="ruas-recentes"></ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-categorias">
+      <div class="container">
+        <div class="secao__cabeca">
+          <h2 id="titulo-categorias">O que você viu na rua?</h2>
+          <p>Escolha o tipo de problema e vá direto para o relato.</p>
+        </div>
+        <ul class="categorias" id="atalhos-categorias"></ul>
+      </div>
+    </section>
+
+    <section class="secao secao--branca" aria-labelledby="titulo-como">
+      <div class="container">
+        <div class="secao__cabeca">
+          <h2 id="titulo-como">Como funciona</h2>
+          <p>Do relato até a sua confirmação de que o problema foi resolvido.</p>
+        </div>
+        <ol class="passos">
+          <li><h3>Você relata</h3><p>Diz o tipo de problema e o local e, se quiser, envia uma foto.</p></li>
+          <li><h3>A prefeitura encaminha</h3><p>O relato vai para a equipe responsável, com prazo definido.</p></li>
+          <li><h3>A equipe conserta</h3><p>Cada etapa aparece no seu protocolo, com data.</p></li>
+          <li><h3>Você confirma</h3><p>Se o problema continuar, o relato volta para análise.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-perto">
+      <div class="container">
+        <div class="painel bairro-rapido">
+          <div>
+            <h2 id="titulo-perto">Como está o seu bairro</h2>
+            <p>Veja quantos problemas esperam conserto e qual é o mais apoiado pelos vizinhos.</p>
+            <div class="campo">
+              <label for="escolha-bairro">Seu bairro</label>
+              <select id="escolha-bairro"><option value="">Todos os bairros</option></select>
+            </div>
+          </div>
+          <div id="resumo-bairro" class="resumo-bairro" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__grade">
+      <div>
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <p>Relate problemas da sua rua, apoie os relatos dos vizinhos e acompanhe cada etapa do conserto.</p>
+      </div>
+      <nav aria-labelledby="rodape-nav">
+        <h2 id="rodape-nav">Navegação</h2>
+        <ul class="rodape__links">
+          <li><a href="relatar.html">Relatar problema</a></li>
+          <li><a href="acompanhar.html">Acompanhar protocolo</a></li>
+          <li><a href="bairro.html">Meu bairro</a></li>
+          <li><a href="ajuda.html">Ajuda e prazos</a></li>
+        </ul>
+      </nav>
+      <section aria-labelledby="rodape-emergencia">
+        <h2 id="rodape-emergencia">Em caso de risco, ligue</h2>
+        <ul class="telefones">
+          <li><a href="tel:199"><strong>199</strong><span>Defesa Civil</span></a></li>
+          <li><a href="tel:193"><strong>193</strong><span>Bombeiros</span></a></li>
+          <li><a href="tel:192"><strong>192</strong><span>SAMU</span></a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="container rodape__base">
+      <p>© <span id="ano-atual">2026</span> Zela. Projeto acadêmico da Global Solution FIAP.</p>
+      <p>Alinhado ao ODS 11: cidades e comunidades sustentáveis.</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/inicio.js"></script>
+</body>
+</html>

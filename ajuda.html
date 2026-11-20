@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ajuda · Zela</title>
+  <meta name="description" content="Descubra quem resolve cada tipo de problema, os prazos de conserto e como usar o Zela.">
+  <meta name="theme-color" content="#0b3d91">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Overpass:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__linha">
+      <a class="marca" href="index.html" aria-label="Zela, página inicial">
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <span class="marca__texto" aria-hidden="true">Cuide da sua rua</span>
+      </a>
+      <nav class="navegacao" aria-label="Principal">
+        <ul id="menu-principal" class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="acompanhar.html">Acompanhar <span id="contador-meus" class="contador" hidden></span></a></li>
+          <li><a href="bairro.html">Meu bairro</a></li>
+          <li><a href="ajuda.html" aria-current="page">Ajuda</a></li>
+          <li class="menu__cta"><a href="relatar.html"><span data-icone="mais"></span>Relatar problema</a></li>
+        </ul>
+      </nav>
+      <div class="prefs" role="group" aria-label="Preferências de leitura">
+        <button type="button" id="pref-texto" class="botao-icone" aria-pressed="false" aria-label="Texto maior" data-dica="Texto maior"><span data-icone="texto"></span></button>
+        <button type="button" id="pref-contraste" class="botao-icone" aria-pressed="false" aria-label="Alto contraste" data-dica="Alto contraste"><span data-icone="contraste"></span></button>
+      </div>
+      <button type="button" id="botao-menu" class="botao-icone botao-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span data-icone="menu"></span></button>
+    </div>
+  </header>
+
+  <div id="aviso-global" class="aviso-global" role="status" aria-live="polite"></div>
+
+  <main id="conteudo" class="pagina" tabindex="-1">
+    <div class="container">
+      <header class="pagina__cabeca">
+        <h1>Ajuda</h1>
+        <p class="lead">A quem pedir cada conserto, quanto tempo demora e respostas para as dúvidas mais comuns.</p>
+      </header>
+
+      <div class="layout-lateral layout-lateral--esquerda">
+        <nav class="sumario lateral-fixa" aria-labelledby="titulo-sumario">
+          <h2 id="titulo-sumario">Nesta página</h2>
+          <ul>
+            <li><a href="#quem-resolve">Quem resolve meu problema?</a></li>
+            <li><a href="#prazos">Quanto tempo demora</a></li>
+            <li><a href="#perguntas">Perguntas frequentes</a></li>
+            <li><a href="#acessibilidade">Acessibilidade</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <section id="quem-resolve" class="painel secao-ajuda" aria-labelledby="titulo-quem">
+            <h2 id="titulo-quem">Quem resolve meu problema?</h2>
+            <p>Nem todo problema da rua é com a prefeitura. Escolha a situação e veja a quem pedir ajuda.</p>
+            <form id="guia" novalidate>
+              <fieldset class="grupo grupo--solto">
+                <legend class="visualmente-oculto">O que está acontecendo?</legend>
+                <div class="opcoes-coluna" id="opcoes-guia"></div>
+              </fieldset>
+            </form>
+            <div id="resposta-guia" class="resposta-guia" aria-live="polite"></div>
+          </section>
+
+          <section id="prazos" class="painel secao-ajuda" aria-labelledby="titulo-prazos">
+            <h2 id="titulo-prazos">Quanto tempo demora</h2>
+            <p>Prazos contados a partir do dia do relato. Casos com risco podem ser atendidos antes.</p>
+            <div class="tabela-rolagem" tabindex="0" role="region" aria-labelledby="legenda-prazos">
+              <table class="tabela">
+                <caption id="legenda-prazos" class="visualmente-oculto">Prazo previsto por tipo de problema</caption>
+                <thead>
+                  <tr><th scope="col">Tipo de problema</th><th scope="col">Prazo</th><th scope="col">Quem faz o serviço</th></tr>
+                </thead>
+                <tbody id="tabela-prazos"></tbody>
+              </table>
+            </div>
+          </section>
+
+          <section id="perguntas" class="painel secao-ajuda" aria-labelledby="titulo-perguntas">
+            <h2 id="titulo-perguntas">Perguntas frequentes</h2>
+            <div class="perguntas">
+              <details>
+                <summary>Preciso me identificar para relatar?</summary>
+                <p>Não. Você pode relatar sem nome, e-mail ou telefone. O contato só é pedido se você quiser receber avisos sobre o andamento.</p>
+              </details>
+              <details>
+                <summary>Por que apoiar um relato em vez de abrir outro igual?</summary>
+                <p>Relatos repetidos do mesmo buraco viram vários pedidos separados na fila. Quando você apoia, o relato que já existe ganha prioridade e todos acompanham o mesmo protocolo.</p>
+              </details>
+              <details>
+                <summary>O prazo passou e nada aconteceu. E agora?</summary>
+                <p>O relato aparece como atrasado em <a href="acompanhar.html">Acompanhar</a> e em <a href="bairro.html">Meu bairro</a>. Peça aos vizinhos que apoiem e, se quiser, leve o número do protocolo à subprefeitura da sua região.</p>
+              </details>
+              <details>
+                <summary>A prefeitura disse que resolveu, mas continua igual.</summary>
+                <p>Abra o relato em <a href="acompanhar.html">Acompanhar</a> e responda "Não, continua igual". O relato é reaberto e volta para análise.</p>
+              </details>
+              <details>
+                <summary>Perdi o número do protocolo.</summary>
+                <p>Os relatos que você fez ou apoiou neste aparelho ficam na lista da página <a href="acompanhar.html">Acompanhar</a>. Você também pode encontrá-los pela rua em <a href="bairro.html">Meu bairro</a>.</p>
+              </details>
+            </div>
+          </section>
+
+          <section id="acessibilidade" class="painel secao-ajuda" aria-labelledby="titulo-acess">
+            <h2 id="titulo-acess">Acessibilidade</h2>
+            <ul class="lista-recursos">
+              <li><span class="ladrilho"><span data-icone="texto"></span></span><div><strong>Texto maior</strong>Use o botão no topo de qualquer página. A escolha fica salva.</div></li>
+              <li><span class="ladrilho"><span data-icone="contraste"></span></span><div><strong>Alto contraste</strong>Preto e branco com cores mais fortes, ao lado do texto maior.</div></li>
+              <li><span class="ladrilho"><span data-icone="info"></span></span><div><strong>Teclado</strong>Tudo funciona com Tab, Enter e Espaço. Esc fecha o menu.</div></li>
+              <li><span class="ladrilho"><span data-icone="sucesso"></span></span><div><strong>Leitor de tela</strong>Avisos como "relato enviado" são lidos assim que acontecem.</div></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__grade">
+      <div>
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <p>Relate problemas da sua rua, apoie os relatos dos vizinhos e acompanhe cada etapa do conserto.</p>
+      </div>
+      <nav aria-labelledby="rodape-nav">
+        <h2 id="rodape-nav">Navegação</h2>
+        <ul class="rodape__links">
+          <li><a href="relatar.html">Relatar problema</a></li>
+          <li><a href="acompanhar.html">Acompanhar protocolo</a></li>
+          <li><a href="bairro.html">Meu bairro</a></li>
+          <li><a href="ajuda.html">Ajuda e prazos</a></li>
+        </ul>
+      </nav>
+      <section aria-labelledby="rodape-emergencia">
+        <h2 id="rodape-emergencia">Em caso de risco, ligue</h2>
+        <ul class="telefones">
+          <li><a href="tel:199"><strong>199</strong><span>Defesa Civil</span></a></li>
+          <li><a href="tel:193"><strong>193</strong><span>Bombeiros</span></a></li>
+          <li><a href="tel:192"><strong>192</strong><span>SAMU</span></a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="container rodape__base">
+      <p>© <span id="ano-atual">2026</span> Zela. Projeto acadêmico da Global Solution FIAP.</p>
+      <p>Alinhado ao ODS 11: cidades e comunidades sustentáveis.</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/ajuda.js"></script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu bairro · Zela</title>
+  <meta name="description" content="Veja os problemas relatados no seu bairro, apoie os que afetam você e confira o que já foi resolvido.">
+  <meta name="theme-color" content="#0b3d91">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700&family=Overpass:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo__linha">
+      <a class="marca" href="index.html" aria-label="Zela, página inicial">
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <span class="marca__texto" aria-hidden="true">Cuide da sua rua</span>
+      </a>
+      <nav class="navegacao" aria-label="Principal">
+        <ul id="menu-principal" class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="acompanhar.html">Acompanhar <span id="contador-meus" class="contador" hidden></span></a></li>
+          <li><a href="bairro.html" aria-current="page">Meu bairro</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li class="menu__cta"><a href="relatar.html"><span data-icone="mais"></span>Relatar problema</a></li>
+        </ul>
+      </nav>
+      <div class="prefs" role="group" aria-label="Preferências de leitura">
+        <button type="button" id="pref-texto" class="botao-icone" aria-pressed="false" aria-label="Texto maior" data-dica="Texto maior"><span data-icone="texto"></span></button>
+        <button type="button" id="pref-contraste" class="botao-icone" aria-pressed="false" aria-label="Alto contraste" data-dica="Alto contraste"><span data-icone="contraste"></span></button>
+      </div>
+      <button type="button" id="botao-menu" class="botao-icone botao-menu" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menu"><span data-icone="menu"></span></button>
+    </div>
+  </header>
+
+  <div id="aviso-global" class="aviso-global" role="status" aria-live="polite"></div>
+
+  <main id="conteudo" class="pagina" tabindex="-1">
+    <div class="container">
+      <header class="pagina__cabeca">
+        <h1>O que está acontecendo no meu bairro</h1>
+        <p class="lead">Se o problema também afeta você, apoie o relato que já existe em vez de abrir outro igual.</p>
+      </header>
+
+      <form id="filtros" class="filtros" aria-label="Filtrar relatos" novalidate>
+        <div class="campo filtros__busca">
+          <label for="filtro-rua">Buscar por rua</label>
+          <div class="campo-com-icone">
+            <span data-icone="lupa"></span>
+            <input type="search" id="filtro-rua" name="rua" autocomplete="off" placeholder="Ex.: Tuiuti">
+          </div>
+        </div>
+        <div class="campo">
+          <label for="filtro-bairro">Bairro</label>
+          <select id="filtro-bairro" name="bairro"><option value="">Todos</option></select>
+        </div>
+        <div class="campo">
+          <label for="filtro-categoria">Tipo</label>
+          <select id="filtro-categoria" name="categoria"><option value="">Todos</option></select>
+        </div>
+        <div class="campo">
+          <label for="filtro-situacao">Situação</label>
+          <select id="filtro-situacao" name="situacao">
+            <option value="">Todas</option>
+            <option value="abertos">Não resolvidos</option>
+            <option value="atrasados">Atrasados</option>
+            <option value="resolvido">Resolvidos</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="filtro-ordem">Ordenar por</label>
+          <select id="filtro-ordem" name="ordem">
+            <option value="recentes">Mais recentes</option>
+            <option value="apoios">Mais apoiados</option>
+            <option value="antigos">Esperando há mais tempo</option>
+          </select>
+        </div>
+      </form>
+
+      <section aria-labelledby="titulo-painel">
+        <h2 id="titulo-painel" class="visualmente-oculto">Resumo</h2>
+        <dl class="numeros" id="numeros"></dl>
+      </section>
+
+      <section aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista" class="visualmente-oculto">Relatos</h2>
+        <div class="filtros__barra">
+          <p id="contagem" class="contagem" role="status" aria-live="polite"></p>
+          <button type="button" class="botao botao--texto botao--pequeno" id="limpar-filtros" hidden>Limpar filtros</button>
+        </div>
+        <ul class="lista-relatos" id="lista-relatos"></ul>
+        <div class="mais">
+          <button type="button" class="botao botao--secundario" id="mostrar-mais" hidden>Mostrar mais relatos</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape__grade">
+      <div>
+        <span class="marca__placa" aria-hidden="true">Zela</span>
+        <p>Relate problemas da sua rua, apoie os relatos dos vizinhos e acompanhe cada etapa do conserto.</p>
+      </div>
+      <nav aria-labelledby="rodape-nav">
+        <h2 id="rodape-nav">Navegação</h2>
+        <ul class="rodape__links">
+          <li><a href="relatar.html">Relatar problema</a></li>
+          <li><a href="acompanhar.html">Acompanhar protocolo</a></li>
+          <li><a href="bairro.html">Meu bairro</a></li>
+          <li><a href="ajuda.html">Ajuda e prazos</a></li>
+        </ul>
+      </nav>
+      <section aria-labelledby="rodape-emergencia">
+        <h2 id="rodape-emergencia">Em caso de risco, ligue</h2>
+        <ul class="telefones">
+          <li><a href="tel:199"><strong>199</strong><span>Defesa Civil</span></a></li>
+          <li><a href="tel:193"><strong>193</strong><span>Bombeiros</span></a></li>
+          <li><a href="tel:192"><strong>192</strong><span>SAMU</span></a></li>
+        </ul>
+      </section>
+    </div>
+    <div class="container rodape__base">
+      <p>© <span id="ano-atual">2026</span> Zela. Projeto acadêmico da Global Solution FIAP.</p>
+      <p>Alinhado ao ODS 11: cidades e comunidades sustentáveis.</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/bairro.js"></script>
+</body>
+</html>
