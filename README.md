@@ -4,8 +4,8 @@ Protótipo navegável de CitizenTech desenvolvido para a **Global Solution FIAP*
 
 O Zela ajuda o morador de uma grande cidade a **relatar problemas de zeladoria urbana** (poste apagado, buraco, calçada quebrada, lixo acumulado, bueiro entupido, árvore com risco e sinalização apagada) e a **acompanhar o conserto** pelo número do protocolo, do relato até a confirmação de que o problema foi resolvido.
 
-🔗 **Deploy:** https://SEU-USUARIO.github.io/zela/ *(substituir pelo link do GitHub Pages)*
-🎬 **Vídeo-pitch:** https://youtu.be/SEU-VIDEO *(substituir)*
+🔗 **Deploy:** https://SEU-USUARIO.github.io/zela/
+🎬 **Vídeo-pitch:** https://youtu.be/tpXPpT6Ffq8
 
 ## Integrantes
 
