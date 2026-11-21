@@ -84,12 +84,6 @@ python3 -m http.server 8000
 
 **Protocolos de exemplo:** `ZL-2026-004812` (serviço programado) e `ZL-2026-004120` (reaberto).
 
-## Publicar no GitHub Pages
-
-1. Envie os arquivos para um repositório público.
-2. Vá em **Settings → Pages**, escolha a branch `main` e a pasta `/ (root)`.
-3. Copie o link gerado para este README, para o PDF e para a descrição do vídeo.
-
 ## ODS relacionado
 
 **ODS 11, Cidades e Comunidades Sustentáveis** (meta 11.7: espaços públicos seguros, inclusivos e acessíveis), com relação secundária ao **ODS 16** (instituições eficazes e transparentes).
